@@ -1,0 +1,155 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+h1{
+    font-size: 50px;
+    line-height: 64px;
+    color: #222;
+}
+h2{
+    font-size: 46px;
+    line-height: 64px;
+    color: #222;
+}
+h4{
+    font-size: 30px;
+    color: #222;
+}
+h6{
+    font-weight: 700;
+    font-size: 12px;
+}
+p{
+    font-size: 12px;
+    color: #465b52;
+}
+#header{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: absolute;
+    z-index: 999;
+    background-color: bisque;
+    position: fixed;
+}
+.logo{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+#navbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#navbar li{
+    list-style: none;
+    padding: 0 18px 0 18px;
+    position: relative;
+}
+#navbar li a{
+    text-decoration: none;
+    color: #000000;
+    font-size: 18px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+#navbar li a:hover,
+#navbar li a:active{
+    color:cadetblue;
+}
+#navbar li a:active::after,
+#navbar li a:hover::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: cadetblue;
+    bottom: -4px;
+    right: 10px;
+}
+.search-container{
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+}
+#search{
+    height: 50px;
+    border: 2px solid #000000;
+    border-radius: 25px;
+    padding: 0 40px 0 10px;
+    font-size: 16px;
+    line-height: 40px;
+}
+.search-icon{
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: gray;
+    pointer-events: none;
+}
+#cart{
+    height: 150px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#cart a{
+    text-decoration: none;
+    color: rgb(0, 137, 242);
+}
+.cart-text{
+    font-size: 20px;
+    font-weight: 300;
+    color: rgb(103, 103, 103);
+}
+#cart a:hover,
+#cart a:active{
+    color: rgb(255, 0, 0);
+}
+.hero {
+    position: relative; /* Đảm bảo hero không bị ảnh hưởng bởi các phần tử khác */
+    height: 100vh; /* Chiều cao chiếm toàn bộ màn hình */
+    width: 100%; /* Chiều rộng chiếm toàn bộ màn hình */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 1; /* Đảm bảo hero nằm dưới header */
+}
+#background-video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+}
+.content-hero{
+    position: relative;
+    width: 25%;
+    text-align: center;
+}
+.content-hero h1,h4{
+    color: rgb(255, 255, 255);
+    font-weight: 150;
+    margin-bottom: 15px;
+}
+.button{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    border: 2px solid rgb(255, 255, 255);
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+.button:hover{
+    background-color: rgb(160, 223, 23);
+    transition: 0.3 ease;
+}
