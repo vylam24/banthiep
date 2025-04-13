@@ -25,6 +25,9 @@ p{
     font-size: 12px;
     color: #465b52;
 }
+section-p1{
+    padding: 40px 80px;
+}
 body{
     width: 100%;
 }
@@ -142,33 +145,35 @@ body{
     text-align: center;
 }
 .content-hero h1,h4{
-    color: rgb(255, 255, 255);
+    color:rgb(94, 11, 11);
     font-weight: 150;
     margin-bottom: 15px;
+    text-transform: uppercase;
 }
 .button{
     text-decoration: none;
-    color: rgb(255, 255, 255);
-    border: 2px solid rgb(255, 255, 255);
+    color: #470303;
+    border: 2px solid #6a0505;;
     padding: 10px 20px;
     border-radius: 25px;
     font-size: 16px;
     margin-bottom: 15px;
 }
 .button:hover{
-    background-color: rgb(160, 223, 23);
+    background-color: rgb(255, 255, 255);
     transition: 0.3 ease;
 }
 .footer {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-around;
-    align-items: flex-start;
     background-color: burlywood;
     gap: 30px;
+    position: relative;
+
+    margin-top: auto;
 }
 
-.infor{
+.information {
     width: 30%;
     display: inline-flex;
     flex-direction: column;
@@ -229,6 +234,7 @@ body{
     color: #333;
     font-size: 2.5em;
     margin-bottom: 15px;
+    text-transform: uppercase;
 }
 
 .slogan {
@@ -303,8 +309,147 @@ body{
     color: #333;
     line-height: 1.6;
 }
-@media (max-width: 768px) {
-    .info-grid {
-        grid-template-columns: 1fr;
-    }
+.products {
+    padding: 120px 20px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
+
+.products h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #333;
+    font-size: 2.5em;
+    text-transform: uppercase;
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+.product-item {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.product-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+   
+}
+
+.product-item h3 {
+    color: #333;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.product-item p {
+    color: #666;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+.product-item .button {
+    display: inline-block;
+    background-color: transparent;
+    color: #333;
+    border: 2px solid #333;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.product-item .button:hover {
+    background-color: #333;
+    color: white;
+    transform: scale(1.05);
+}
+.products {
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .slider-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .product-slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: max-content; /* Giúp chứa được nhiều slide */
+  }
+  
+  .product-slide {
+    flex: 0 0 25%; /* 4 slide trên 1 khung: 100% / 4 */
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .product-slide img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .product-slide h3,
+  .product-slide p {
+    margin: 10px 0;
+    font-size: 18px;
+  }
+  
+  .product-slide .button {
+    margin-top: auto;
+    background-color: #000000;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .product-slide .button:hover{
+    background-color: #fff;
+    transform: 0.3s ease;
+    color: #000000;
+  }
+  .slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 5;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  }
+  .prev-btn {
+    left: 0;
+  }
+  
+  .next-btn {
+    right: 0;
+  }
+  
