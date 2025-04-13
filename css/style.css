@@ -25,6 +25,9 @@ p{
     font-size: 12px;
     color: #465b52;
 }
+body{
+    width: 100%;
+}
 #header{
     height: 100px;
     width: 100%;
@@ -35,6 +38,8 @@ p{
     z-index: 999;
     background-color: bisque;
     position: fixed;
+    transition: box-shadow 0.3s ease, border-bottom 0.3s ease;
+    
 }
 .logo{
     height: 100px;
@@ -117,7 +122,7 @@ p{
 }
 .hero {
     position: relative; /* Đảm bảo hero không bị ảnh hưởng bởi các phần tử khác */
-    height: 100vh; /* Chiều cao chiếm toàn bộ màn hình */
+    height: 120vh; /* Chiều cao chiếm toàn bộ màn hình */
     width: 100%; /* Chiều rộng chiếm toàn bộ màn hình */
     display: flex;
     flex-direction: column;
@@ -129,6 +134,7 @@ p{
     top: 0;
     left: 0;
     width:100%;
+    z-index: -1;
 }
 .content-hero{
     position: relative;
@@ -152,4 +158,58 @@ p{
 .button:hover{
     background-color: rgb(160, 223, 23);
     transition: 0.3 ease;
+}
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    background-color: burlywood;
+    gap: 30px;
+}
+
+.infor{
+    width: 30%;
+    display: inline-flex;
+    flex-direction: column;
+    align-items:flex-start;
+    text-align:left;
+    padding: 40px 20px;
+}
+#logo-footer {
+    width: 80px;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+.contact, .features {
+    padding: 60px 20px;
+
+}
+.footer h4 {
+    margin-bottom: 10px;
+    font-size: 22px;
+    color: #000;
+    font-weight: 400px;
+}
+
+.footer p {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+}
+.copyright {
+    text-align: center;
+    padding: 15px;
+    background-color: #deb887;
+    font-size: 14px;
+    color: #333;
+    margin: 0;
+}
+.logo-footer{
+    width: 32px;
+    height: 32px;
+}
+.contact a{
+    text-decoration: none;
 }
