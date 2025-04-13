@@ -213,3 +213,98 @@ body{
 .contact a{
     text-decoration: none;
 }
+.article {
+    padding-top: 120px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 50px;
+}
+
+.about-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.about-header h1 {
+    color: #333;
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+.slogan {
+    font-style: italic;
+    color: #666;
+    font-size: 1.2em;
+}
+
+.about-content {
+    display: grid;
+    gap: 40px;
+    padding: 0 20px;
+}
+
+.intro-section {
+    text-align: justify;
+    line-height: 1.6;
+}
+
+.product-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.product-info li {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+}
+
+.product-info i {
+    color: #4CAF50;
+    margin-right: 10px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.info-item {
+    text-align: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.info-item:hover {
+    transform: translateY(-5px);
+}
+
+.info-item i {
+    font-size: 2em;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.info-item h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.info-item p {
+    color: #666;
+    font-size: 18px;
+}
+.intro-section p{
+    font-size: 18px;
+    color: #333;
+    line-height: 1.6;
+}
+@media (max-width: 768px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}
