@@ -80,7 +80,7 @@ body{
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #fff;
+    background-color:rgb(243, 214, 181);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     list-style: none;
     padding: 10px 0;
@@ -99,8 +99,8 @@ body{
 }
 
 .dropdown-menu a:hover {
-    background-color: #f1f1f1;
-    color: #d32f2f;
+    background-color: #cecece;
+    color: #561414;
 }
 
 /* Hiển thị dropdown khi hover */
@@ -282,7 +282,7 @@ body{
     text-decoration: none;
 }
 .article {
-    padding-top: 100px;
+    padding-top: 110px;
     max-width: 1200px;
     margin: 0 auto;
     padding-bottom: 40px;
@@ -373,9 +373,14 @@ body{
     line-height: 1.6;
 }
 .products {
-    padding: 120px 20px 40px;
+    padding: 40px 20px 40px;
     max-width: 1200px;
     margin: 0 auto;
+    z-index: 0;;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 80px;
 }
 
 .products h2 {
@@ -444,11 +449,6 @@ body{
     color: white;
     transform: scale(1.05);
 }
-.products {
-    padding: 40px 20px;
-    background-color: #f9f9f9;
-  }
-  
   .slider-container {
     position: relative;
     overflow: hidden;
@@ -464,7 +464,7 @@ body{
   }
   
   .product-slide {
-    flex: 0 0 15%; /* 4 slide trên 1 khung: 100% / 4 */
+    flex: 0 0 8%; /* 4 slide trên 1 khung: 100% / 4 */
     box-sizing: border-box;
     padding: 15px;
     text-align: center;
@@ -477,13 +477,12 @@ body{
     border-radius: 10px;
   }
   
-  .product-slide h3,
+  .product-slide h4,
   .product-slide p {
     margin: 12px 0;
     font-size: 16px;
   }
-  
-  .product-slide .button {
+ .button {
     margin-top: auto;
     background-color: #000000;
     color: white;
@@ -492,7 +491,7 @@ body{
     text-decoration: none;
     display: inline-block;
   }
-  .product-slide .button:hover{
+.button:hover{
     background-color: #fff;
     transform: 0.3s ease;
     color: #000000;
@@ -620,7 +619,7 @@ body{
 }
 /* Contact Section */
 #contact {
-    padding: 100px 20px;
+    padding: 120px 20px;
     color: #fff;
     width: 60%;
     margin: 0 auto;
@@ -650,10 +649,10 @@ body{
 .contact-form,
 .contact-info {
     flex: 1;
-    background-color: rgba(160, 160, 160, 0.7);
+    background-color: rgba(197, 197, 197, 0.7);
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(160, 160, 160, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .contact-form {
@@ -721,3 +720,97 @@ body{
     font-size: 14px;
     color: #fff;
 }
+/* Product Display Section */
+
+.products h2 {
+    text-align: center;
+    font-size: 38px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    color: #333;
+}
+
+.products h3 {
+    font-size: 28px;
+    color: #790808;
+    width: 100%;
+    text-align: left;
+}
+.product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    gap: 10px;
+    align-items: center;
+    justify-items: center;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.product-card img {
+    width: 250px;
+    height: 250px;
+    border-radius: 5px;
+}
+
+.product-card h4 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #1c1818;
+}
+
+.product-card p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.minsize,
+.largesize,
+.popup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: start;
+    width: 100%;
+    max-width: 1400px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+.products-display {
+    padding: 150px 20px;
+    background-color: #f8f8f8;
+}
+
+.products-display h2 {
+    text-align: center;
+    font-size: 38px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    color: #333;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+

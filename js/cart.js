@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const cartItems = document.getElementById("cart-items"); // Bảng hiển thị sản phẩm trong giỏ hàng
     const cartTotal = document.querySelector(".empty-cart span.text-danger"); // Tổng giá trị giỏ hàng
     const btnClearCart = document.querySelector(".btn-danger"); // Nút xóa tất cả
-    const btnUpdateCart = document.querySelector(".btn-primary"); // Nút cập nhật giỏ hàng
     const btnCheckout = document.querySelector(".btn-success"); // Nút đặt hàng
 
     // Lấy giỏ hàng từ localStorage hoặc khởi tạo mảng rỗng
