@@ -174,7 +174,7 @@
         // Xóa giỏ hàng và thông tin đặt hàng
         localStorage.removeItem('cart');
         localStorage.removeItem('orderInfo');
-        window.location.href = 'index.html';
+        window.location.href = '../index.html';
     }
     document.getElementById('pay-btn').onclick = function() {
     // Hiện modal chuyển khoản thay vì alert và chuyển trang
@@ -187,13 +187,13 @@ document.getElementById('close-payment').onclick = function() {
     // Sau khi đóng modal, có thể xóa giỏ hàng và chuyển trang nếu muốn:
     localStorage.removeItem('cart');
     localStorage.removeItem('orderInfo');
-    window.location.href = 'index.html';
+    window.location.href = '/index.html';
 };
 document.querySelector('.close-modal').onclick = function() {
     document.getElementById('payment-modal').style.display = 'none';
     localStorage.removeItem('cart');
     localStorage.removeItem('orderInfo');
-    window.location.href = 'index.html';
+    window.location.href = '/index.html';
 };
     </script>
 </body>
