@@ -69,14 +69,33 @@
                         </tr>
                     </tbody>
                 </table>
+                <div id="cart-total"></div>
                 <div class="cart-actions">
                     <a href="product-page1.html"><button class="btn btn-secondary">Mua tiếp</button></a>
-                    <button class="btn btn-danger">Xóa tất cả</button>
-                    <button class="btn btn-success">Đặt hàng</button>
+                    <button class="btn btn-danger" id="clear-cart">Xóa tất cả</button>
+                    <button class="btn btn-success" id="order-btn">Đặt hàng</button>
                 </div>
             </div>
         </div>
     </section>
+    <!-- Modal nhập thông tin -->
+<div id="order-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span class="close-modal" style="float:right;cursor:pointer;">&times;</span>
+      <h3>Thông tin đặt hàng</h3>
+      <form id="order-form">
+        <label>Họ tên:</label>
+        <input type="text" id="customer-name" required><br>
+        <label>Số điện thoại:</label>
+        <input type="tel" id="customer-phone" required><br>
+        <label>Email:</label>
+        <input type="email" id="customer-email" required><br>
+        <label>Địa chỉ:</label>
+        <input type="text" id="customer-address" required><br>
+        <button type="submit" class="button">Xác nhận</button>
+      </form>
+    </div>
+  </div>
      <div class="footer">
         <section class="information">
             <img src="../img/logo.jpg" alt="Logo" id="logo-footer">

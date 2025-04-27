@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Hóa Đơn Đặt Hàng</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="shortcut icon" href="../img/logo.jpg" type="image/x-icon">
+    <script src="../js/login.js"></script>
+    <style>
+        .invoice-container { 
+            max-width: 800px; 
+            background: #fff; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 8px #ccc; 
+            padding: 32px; 
+            margin: 0 auto;
+        }
+        .invoice-title { 
+            text-align: center; 
+            margin-bottom: 24px; 
+            margin-top: 80px;
+        }
+        .invoice-section { 
+            margin-bottom: 24px; 
+        }
+        .invoice-section h4 { 
+            margin-bottom: 12px; 
+        }
+        .table th, .table td { 
+            vertical-align: middle; 
+        }
+        .btn-pay {
+             margin-top: 24px; 
+             width: 100%; 
+            }
+    </style>
+</head>
+<body style="background:#f0f2f5;">
+    <section id="header">
+        <a href="index.html"><img src="../img/logo.jpg" alt="Logo" class="logo"></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html"><i class="fas fa-home"></i></a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">SẢN PHẨM</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="minsize.html">THIỆP GỖ 3D (SIZE NHỎ)</a></li>
+                        <li><a href="largesize.html">THIỆP GỖ 3D (SIZE LỚN)</a></li>
+                        <li><a href="popup.html">THIỆP 3D POPUP</a></li>
+                        <li><a href="gift.html">QUÀ TẶNG - FREE</a></li>
+                    </ul>
+                </li>
+                <li><a href="about.html">GIỚI THIỆU</a></li>
+                <li><a href="contact.html">LIÊN HỆ</a></li>
+            </ul>
+        </div>
+        <div id="login-button">
+             <a href="login.html">ĐĂNG NHẬP <i class="fas fa-user"></i></a>
+        </div>
+        <div id="user-info"></div>
+        <div id="cart">
+            <a href="cart.html">
+                <span class="cart-text">GIỎ HÀNG</span>
+                <i class="fas fa-cart-shopping"></i> 
+                <span class="cart-count">0</span>
+            </a>
+        </div>
+    </section>
+
+    <div class="invoice-container">
+        <h2 class="invoice-title">HÓA ĐƠN ĐẶT HÀNG</h2>
+        <div class="invoice-section" id="customer-info">
+            <h4>Thông tin khách hàng</h4>
+            <p><strong>Họ tên:</strong> <span id="info-name"></span></p>
+            <p><strong>Số điện thoại:</strong> <span id="info-phone"></span></p>
+            <p><strong>Email:</strong> <span id="info-email"></span></p>
+            <p><strong>Địa chỉ:</strong> <span id="info-address"></span></p>
+        </div>
+        <div class="invoice-section">
+            <h4>Danh sách sản phẩm</h4>
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>#</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Ảnh</th>
+                            <th>Đơn giá</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody id="invoice-items"></tbody>
+                </table>
+            </div>
+            <div style="text-align:right;font-size:18px;font-weight:bold;">
+                Tổng thành tiền: <span id="invoice-total">0</span> VNĐ
+            </div>
+        </div>
+        <button class="btn btn-success btn-pay" id="pay-btn">Thanh toán</button>
+    </div>
+    <!-- Modal chuyển khoản -->
+<div id="payment-modal" class="modal" style="display:none;">
+    <div class="modal-content" style="max-width:400px;margin:10% auto;padding:24px;position:relative;">
+      <span class="close-modal" style="position:absolute;top:8px;right:16px;font-size:28px;cursor:pointer;">&times;</span>
+      <h4>Thông tin chuyển khoản</h4>
+      <p><b>Ngân hàng:</b> MB Bank</p>
+      <p><b>Số tài khoản:</b> 0338248455</p>
+      <p><b>Chủ tài khoản:</b> Lâm Phú Vỹ</p>
+      <p><b>Nội dung:</b> [Họ tên] + [Số điện thoại]</p>
+      <p><i>Vui lòng chuyển khoản đúng nội dung để xác nhận đơn hàng. <br>
+    Mọi thông tin chi tiết về đơn hàng của bạn sẽ được gửi qua email!</i></p>
+
+      <button id="close-payment" class="btn btn-primary" style="margin-top:12px;">Xác nhận</button>
+    </div>
+  </div>
+    <section class="footer">
+        <section class="information">
+            <img src="../img/logo.jpg" alt="Logo" id="logo-footer">
+            <p>Kế thừa nghệ thuật giấy Kirigami, chúng tôi đã cải tiến để sản phẩm trở nên tinh tế và độc đáo hơn. Mô hình là sự kết hợp những nét đẹp từ kiến trúc và văn hoá của mỗi quốc gia, vùng miền, với thông điệp xanh “Hãy sử dụng nguyên liệu tái chế thân thiện với môi trường”. Chúng tôi luôn sẵn sàng kể cho các bạn nghe về sự khác biệt thú vị của “mô hình giấy 3D Phú Vỹ”.</p>
+        </section>
+        <section class="contact">
+            <h4>MỸ NGHỆ THÔNG MINH PHÚ VỸ</h4>
+            <p><i class="fas fa-location-dot"></i> 12 Nguyễn Văn Bảo, Phường 1, Gò Vấp, Hồ Chí Minh</p>
+            <p><i class="fas fa-phone"></i> +84 338248455</p>
+            <p><i class="fas fa-envelope"></i> vylam.12005@gmail.com</p>
+            <a href="https://www.facebook.com/lpvy.248" target="_blank"><img src="../img/facebook.png" alt="Logo facebook" class="logo-footer"></a>
+            <a href="https://www.instagram.com/ur_teddy.05/" target="_blank"><img src="../img/instagram.png" alt="Logo instagram" class="logo-footer"></a>
+            <a href="https://www.tiktok.com/@vyx.248?lang=vi-VN" target="_blank"><img src="../img/tiktok.png" alt="Logo tik" class="logo-footer"></a>
+        </section>
+        <section class="features">
+            <h4>NỔI BẬT</h4>
+            <p>Đặt hàng trực tuyến</p>
+            <p>Miễn phí vận chuyển</p>
+            <p>Tiết kiệm tiền</p>
+            <p>Hỗ trợ 24/7</p>
+        </section>
+     </section>
+     <hr>
+     <p class="copyright">Copyright &copy; 2025 Mỹ Nghệ Thông Minh Phú Vỹ. Design by ur_teddy.05.</p>
+    <script>
+    // Hiển thị thông tin khách hàng
+    const info = JSON.parse(localStorage.getItem('orderInfo')) || {};
+    document.getElementById('info-name').textContent = info.name || '';
+    document.getElementById('info-phone').textContent = info.phone || '';
+    document.getElementById('info-email').textContent = info.email || '';
+    document.getElementById('info-address').textContent = info.address || '';
+
+    // Hiển thị danh sách sản phẩm và tổng tiền
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const invoiceItems = document.getElementById('invoice-items');
+    let total = 0;
+    cart.forEach((item, idx) => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${idx + 1}</td>
+            <td>${item.name}</td>
+            <td><img src="${item.image}" alt="${item.name}" width="80"></td>
+            <td>${item.price.toLocaleString()} VNĐ</td>
+            <td>${item.quantity}</td>
+            <td>${itemTotal.toLocaleString()} VNĐ</td>
+        `;
+        invoiceItems.appendChild(row);
+    });
+    document.getElementById('invoice-total').textContent = total.toLocaleString();
+
+    // Xử lý nút thanh toán
+    document.getElementById('pay-btn').onclick = function() {
+        alert('Cảm ơn bạn đã đặt hàng! Đơn hàng của bạn đang được xử lý.');
+        // Xóa giỏ hàng và thông tin đặt hàng
+        localStorage.removeItem('cart');
+        localStorage.removeItem('orderInfo');
+        window.location.href = 'index.html';
+    }
+    document.getElementById('pay-btn').onclick = function() {
+    // Hiện modal chuyển khoản thay vì alert và chuyển trang
+    document.getElementById('payment-modal').style.display = 'flex';
+};
+
+// Đóng modal khi nhấn nút hoặc dấu X
+document.getElementById('close-payment').onclick = function() {
+    document.getElementById('payment-modal').style.display = 'none';
+    // Sau khi đóng modal, có thể xóa giỏ hàng và chuyển trang nếu muốn:
+    localStorage.removeItem('cart');
+    localStorage.removeItem('orderInfo');
+    window.location.href = 'index.html';
+};
+document.querySelector('.close-modal').onclick = function() {
+    document.getElementById('payment-modal').style.display = 'none';
+    localStorage.removeItem('cart');
+    localStorage.removeItem('orderInfo');
+    window.location.href = 'index.html';
+};
+    </script>
+</body>
+</html>
