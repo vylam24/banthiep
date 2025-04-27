@@ -108,62 +108,6 @@ body{
     display: block;
 }
 
-/* User actions (Đăng nhập/Đăng ký) */
-.user-actions {
-    display: flex;
-    gap: 10px;
-}
-
-.user-actions .btn {
-    padding: 8px 15px;
-    font-size: 14px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.user-actions .btn-outline-primary {
-    color: #4d1616;
-    border: 1px solid #471111;
-}
-
-.user-actions .btn-outline-primary:hover {
-    background-color: #ab7c7c;
-    color: #fff;
-}
-
-.user-actions .btn-outline-secondary {
-    color: #441919;
-    border: 1px solid #4f1e1e;
-}
-
-.user-actions .btn-outline-secondary:hover {
-    background-color: #ab8e8e;
-    color: #fff;
-}
-.search-container{
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    width: 250px;
-}
-#search{
-    height: 50px;
-    border: 2px solid #4f1717;
-    border-radius: 25px;
-    padding: 0 40px 0 10px;
-    font-size: 16px;
-    line-height: 40px;
-}
-.search-icon{
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 18px;
-    color: rgb(67, 12, 12);
-    pointer-events: none;
-}
 #cart{
     height: 150px;
     width: 150px;
@@ -605,4 +549,9 @@ body{
     background-color: #007bff;
     color: #fff;
     border-color: #007bff;
+}
+#login-button a{
+    text-decoration: none;
+    color: #641b1b;
+    font-weight: 800px;
 }

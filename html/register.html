@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .register-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .btn {
+            background-color: #42b72a;
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            width: 100%;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #36a420;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .login-link a {
+            color: #1877f2;
+            text-decoration: none;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2 style="text-align: center;">Đăng ký tài khoản</h2>
+        <form action="/register" method="POST" onsubmit="handleRegister(event)">
+            <div class="form-group">
+                <label for="fullname">Họ và tên:</label>
+                <input type="text" id="fullname" name="fullname" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Tên đăng nhập:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Mật khẩu:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Nhập lại mật khẩu:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+            <button type="submit" class="btn">Đăng ký</button>
+        </form>
+        
+    <script>
+        function handleRegister(event) {
+            event.preventDefault();
+
+            const fullname = document.getElementById('fullname').value;
+            const email = document.getElementById('email').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            // Kiểm tra mật khẩu xác nhận
+            if (password !== confirmPassword) {
+                alert('Mật khẩu xác nhận không khớp!');
+                return false;
+            }
+
+            // Lấy danh sách người dùng từ localStorage
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+
+            // Kiểm tra username đã tồn tại
+            if (users.find(u => u.username === username)) {
+                alert('Tên đăng nhập đã tồn tại!');
+                return false;
+            }
+
+            // Kiểm tra email đã tồn tại
+            if (users.find(u => u.email === email)) {
+                alert('Email đã được sử dụng!');
+                return false;
+            }
+
+            // Tạo người dùng mới
+            const newUser = {
+                fullname,
+                email,
+                username,
+                password
+            };
+
+            // Thêm người dùng mới vào danh sách
+            users.push(newUser);
+
+            // Lưu danh sách người dùng vào localStorage
+            localStorage.setItem('users', JSON.stringify(users));
+
+            alert('Đăng ký thành công!');
+            window.location.href = 'login.html';
+
+            return false;
+        }
+    </script>
+</body>
+</html>
