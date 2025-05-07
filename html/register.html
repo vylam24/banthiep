@@ -59,85 +59,230 @@
         .login-link a:hover {
             text-decoration: underline;
         }
+        #feedback {
+    color: red;
+    text-align: center;
+    margin-bottom: 1rem;
+    min-height: 20px;
+    transition: all 0.3s ease;
+}
+.error-message {
+    color: #ff4444;
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+    min-height: 16px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.form-group input.error {
+    border-color: #ff4444;
+}
     </style>
 </head>
 <body>
     <div class="register-container">
         <h2 style="text-align: center;">Đăng ký tài khoản</h2>
-        <form action="/register" method="POST" onsubmit="handleRegister(event)">
+        <form action="/register" method="POST" onsubmit="handleRegister(event)" novalidate>
             <div class="form-group">
                 <label for="fullname">Họ và tên:</label>
                 <input type="text" id="fullname" name="fullname" required>
+                <span class="error-message"></span>
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
+                <span class="error-message"></span>
             </div>
             <div class="form-group">
                 <label for="username">Tên đăng nhập:</label>
                 <input type="text" id="username" name="username" required>
+                <span class="error-message"></span>
             </div>
             <div class="form-group">
                 <label for="password">Mật khẩu:</label>
                 <input type="password" id="password" name="password" required>
+                <span class="error-message"></span>
             </div>
             <div class="form-group">
                 <label for="confirm-password">Nhập lại mật khẩu:</label>
                 <input type="password" id="confirm-password" name="confirm-password" required>
+                <span class="error-message"></span>
             </div>
+            <div id="feedback" style="color: red; text-align: center; margin-bottom: 1rem;"></div>
             <button type="submit" class="btn">Đăng ký</button>
+            <div class="login-link">
+                <p>Đã có tài khoản? <a href="login.html">Đăng nhập ngay</a></p>
+                <p><a href="../index.html">Trở về trang chủ</a></p>
+            </div>
         </form>
-        
-    <script>
-        function handleRegister(event) {
-            event.preventDefault();
-
-            const fullname = document.getElementById('fullname').value;
-            const email = document.getElementById('email').value;
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirm-password').value;
-
-            // Kiểm tra mật khẩu xác nhận
-            if (password !== confirmPassword) {
-                alert('Mật khẩu xác nhận không khớp!');
-                return false;
-            }
-
-            // Lấy danh sách người dùng từ localStorage
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-
-            // Kiểm tra username đã tồn tại
-            if (users.find(u => u.username === username)) {
-                alert('Tên đăng nhập đã tồn tại!');
-                return false;
-            }
-
-            // Kiểm tra email đã tồn tại
-            if (users.find(u => u.email === email)) {
-                alert('Email đã được sử dụng!');
-                return false;
-            }
-
-            // Tạo người dùng mới
-            const newUser = {
-                fullname,
-                email,
-                username,
-                password
+        <script>
+            // Validation rules and messages
+            const validations = {
+                fullname: {
+                    regex: /^[a-zA-ZÀ-ỹ\s]{2,}$/,
+                    message: 'Họ tên chỉ được chứa chữ cái và ít nhất 2 ký tự'
+                },
+                email: {
+                    regex: /^[a-zA-Z0-9._%+-]+@gmail\.com$/,
+                    message: 'Email phải có định dạng @gmail.com'
+                },
+                username: {
+                    regex: /^[a-zA-Z0-9_]{3,20}$/,
+                    message: 'Tên đăng nhập chỉ được chứa chữ cái, số, dấu gạch dưới và từ 3-20 ký tự'
+                },
+                password: {
+                    regex: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,
+                    message: 'Mật khẩu phải có ít nhất 6 ký tự, bao gồm chữ và số'
+                }
             };
-
-            // Thêm người dùng mới vào danh sách
-            users.push(newUser);
-
-            // Lưu danh sách người dùng vào localStorage
-            localStorage.setItem('users', JSON.stringify(users));
-
-            alert('Đăng ký thành công!');
-            window.location.href = 'login.html';
-
-            return false;
-        }
-    </script>
+            
+            // Handle form submission
+            function handleRegister(event) {
+                event.preventDefault();
+            
+                // Get form elements
+                const form = event.target;
+                const submitButton = form.querySelector('button[type="submit"]');
+                const inputs = form.querySelectorAll('input');
+                let hasError = false;
+            
+                // Reset all error messages
+                document.querySelectorAll('.error-message').forEach(span => span.textContent = '');
+                document.querySelectorAll('.form-group input').forEach(input => input.classList.remove('error'));
+            
+                // Get form values
+                let fullname = document.getElementById('fullname').value.trim();
+                let email = document.getElementById('email').value.trim();
+                let username = document.getElementById('username').value.trim();
+                let password = document.getElementById('password').value;
+                let confirmPassword = document.getElementById('confirm-password').value;
+            
+                try {
+                    // Check empty fields
+                    inputs.forEach(input => {
+                        if (!input.value.trim()) {
+                            const errorSpan = input.nextElementSibling;
+                            errorSpan.textContent = `Vui lòng nhập ${input.previousElementSibling.innerText.toLowerCase()}`;
+                            input.classList.add('error');
+                            hasError = true;
+                        }
+                    });
+            
+                    if (hasError) throw new Error('Vui lòng điền đầy đủ thông tin');
+            
+                    // Validate each field
+                    Object.keys(validations).forEach(field => {
+                        const input = document.getElementById(field);
+                        if (input && !validations[field].regex.test(input.value)) {
+                            const errorSpan = input.nextElementSibling;
+                            errorSpan.textContent = validations[field].message;
+                            input.classList.add('error');
+                            hasError = true;
+                        }
+                    });
+            
+                    // Check password match
+                    if (password !== confirmPassword) {
+                        const errorSpan = document.getElementById('confirm-password').nextElementSibling;
+                        errorSpan.textContent = 'Mật khẩu xác nhận không khớp';
+                        document.getElementById('confirm-password').classList.add('error');
+                        hasError = true;
+                    }
+            
+                    if (hasError) throw new Error('Vui lòng kiểm tra lại thông tin');
+            
+                    // Disable button and show loading state
+                    submitButton.disabled = true;
+                    submitButton.innerText = 'Đang xử lý...';
+            
+                    // Get existing users
+                    let users = JSON.parse(localStorage.getItem('users')) || [];
+            
+                    // Check duplicate username and email
+                    if (users.find(u => u.username.toLowerCase() === username.toLowerCase())) {
+                        throw new Error('Tên đăng nhập đã tồn tại');
+                    }
+                    if (users.find(u => u.email.toLowerCase() === email.toLowerCase())) {
+                        throw new Error('Email đã được sử dụng');
+                    }
+            
+                    // Create and save new user
+                    const newUser = {
+                        fullname,
+                        email,
+                        username,
+                        password, // In production, password should be hashed
+                        createdAt: new Date().toISOString()
+                    };
+            
+                    users.push(newUser);
+                    localStorage.setItem('users', JSON.stringify(users));
+            
+                    // Show success and redirect
+                    feedback.style.color = 'green';
+                    feedback.innerText = 'Đăng ký thành công! Đang chuyển hướng...';
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 2000);
+            
+                } catch (error) {
+                    feedback.style.color = 'red';
+                    feedback.innerText = error.message;
+                    submitButton.disabled = false;
+                    submitButton.innerText = 'Đăng ký';
+                }
+            }
+            
+            // Real-time validation
+            document.addEventListener('DOMContentLoaded', function() {
+                const inputs = document.querySelectorAll('.form-group input');
+            
+                inputs.forEach(input => {
+                    const errorSpan = input.nextElementSibling;
+            
+                    input.addEventListener('input', function() {
+                        // Clear error on input
+                        errorSpan.textContent = '';
+                        input.classList.remove('error');
+                        feedback.innerText = '';
+            
+                        if (this.value.trim()) {
+                            // Validate field if not empty
+                            const validation = validations[this.id];
+                            if (validation && !validation.regex.test(this.value)) {
+                                errorSpan.textContent = validation.message;
+                                input.classList.add('error');
+                            }
+            
+                            // Check password match in real-time
+                            if (this.id === 'confirm-password' || this.id === 'password') {
+                                const password = document.getElementById('password');
+                                const confirmPassword = document.getElementById('confirm-password');
+                                if (confirmPassword.value && password.value !== confirmPassword.value) {
+                                    document.querySelector('#confirm-password + .error-message')
+                                        .textContent = 'Mật khẩu xác nhận không khớp';
+                                    confirmPassword.classList.add('error');
+                                }
+                            }
+                        }
+                    });
+            
+                    input.addEventListener('blur', function() {
+                        // Show error if field is empty on blur
+                        if (!this.value.trim()) {
+                            errorSpan.textContent = `Vui lòng nhập ${this.previousElementSibling.innerText.toLowerCase()}`;
+                            input.classList.add('error');
+                        }
+                    });
+                });
+            });
+            </script>
+          
+        
 </body>
 </html>
