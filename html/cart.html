@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
-    <script src="../js/jquery-3.7.1.min.js"></script>
     <script src="../js/login.js"></script>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/cart.css">
@@ -82,18 +82,30 @@
 <div id="order-modal" class="modal" style="display:none;">
     <div class="modal-content">
       <span class="close-modal" style="float:right;cursor:pointer;">&times;</span>
-      <h3>Thông tin đặt hàng</h3>
-      <form id="order-form">
-        <label>Họ tên:</label>
-        <input type="text" id="customer-name" required><br>
-        <label>Số điện thoại:</label>
-        <input type="tel" id="customer-phone" required><br>
-        <label>Email:</label>
-        <input type="email" id="customer-email" required><br>
-        <label>Địa chỉ:</label>
-        <input type="text" id="customer-address" required><br>
-        <button type="submit" class="button">Xác nhận</button>
-      </form>
+      <h3 style="text-align: center;">Thông tin đặt hàng</h3>
+      <form id="order-form" novalidate>
+        <div class="form-group">
+            <label for="customer-name">Họ tên:</label>
+            <input type="text" id="customer-name" required>
+            <div class="invalid-feedback">Họ tên không được để trống</div>
+        </div>
+        <div class="form-group">
+            <label for="customer-phone">Số điện thoại:</label>
+            <input type="tel" id="customer-phone" required>
+            <div class="invalid-feedback">Số điện thoại không được để trống và phải có dạng 0XXXXXXXXX</div>
+        </div>
+        <div class="form-group">
+            <label for="customer-email">Email:</label>
+            <input type="email" id="customer-email" required>
+           <div class="invalid-feedback">Email không được để trống và phải có dạng @gmail.com</div>
+        </div>
+        <div class="form-group">
+            <label for="customer-address">Địa chỉ:</label>
+            <input type="text" id="customer-address" required>
+           <div class="invalid-feedback">Địa chỉ không được để trống</div>
+        </div>
+        <button type="submit" id="confirmButton">Xác nhận</button>
+    </form>
     </div>
   </div>
      <div class="footer">
@@ -120,5 +132,6 @@
      </div>
      <hr>
      <p class="copyright">Copyright &copy; Mỹ Nghệ Thông Minh Phú Vỹ. Design by ur_teddy.05.</p>
-</body>
+
+    </body>
 </html>

@@ -154,16 +154,68 @@ document.addEventListener('DOMContentLoaded', function () {
         };
         orderForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            // Lưu thông tin khách hàng vào localStorage (hoặc gửi lên server)
+
+            // Lấy các input và feedback
+            let name = document.getElementById('customer-name');
+            let phone = document.getElementById('customer-phone');
+            let email = document.getElementById('customer-email');
+            let address = document.getElementById('customer-address');
+
+            // Xóa lỗi cũ
+            document.querySelectorAll('.invalid-feedback').forEach(div => div.style.display = 'none');
+            [name, phone, email, address].forEach(input => input.classList.remove('error'));
+
+            let isValid = true;
+
+            // Kiểm tra họ tên
+            if (name.value.trim() === '') {
+                name.classList.add('error');
+                name.nextElementSibling.style.display = 'block';
+                isValid = false;
+            }
+
+            // Kiểm tra số điện thoại
+            if (phone.value.trim() === '' || !/^0\d{9}$/.test(phone.value.trim())) {
+                phone.classList.add('error');
+                phone.nextElementSibling.style.display = 'block';
+                isValid = false;
+            }
+
+            // Kiểm tra email
+            if (email.value.trim() === '' || !/^[\w.-]+@gmail\.com$/.test(email.value.trim())) {
+                email.classList.add('error');
+                email.nextElementSibling.style.display = 'block';
+                isValid = false;
+            }
+
+            // Kiểm tra địa chỉ
+            if (address.value.trim() === '') {
+                address.classList.add('error');
+                address.nextElementSibling.style.display = 'block';
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            // Nếu hợp lệ, lưu thông tin và chuyển trang
             const info = {
-                name: document.getElementById('customer-name').value,
-                phone: document.getElementById('customer-phone').value,
-                email: document.getElementById('customer-email').value,
-                address: document.getElementById('customer-address').value
+                name: name.value.trim(),
+                phone: phone.value.trim(),
+                email: email.value.trim(),
+                address: address.value.trim()
             };
             localStorage.setItem('orderInfo', JSON.stringify(info));
             orderModal.style.display = 'none';
-            window.location.href = 'hoadon.html'; // chuyển đến trang hóa đơn
+            window.location.href = 'hoadon.html';
+        });
+
+        // Ẩn lỗi khi người dùng nhập lại
+        [ 'customer-name', 'customer-phone', 'customer-email', 'customer-address' ].forEach(id => {
+            const input = document.getElementById(id);
+            input.addEventListener('input', function() {
+                input.classList.remove('error');
+                input.nextElementSibling.style.display = 'none';
+            });
         });
     }
 });

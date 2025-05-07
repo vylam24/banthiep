@@ -99,3 +99,137 @@
 .cart-actions .btn:hover {
     opacity: 0.9;
 }
+.modal input {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.modal input:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+.modal input.error {
+    border-color: red;
+}
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 4px;
+    display: block;
+}
+/* Modal overlay */
+#order-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.4);
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+/* Modal content */
+#order-modal .modal-content {
+    background: #fff;
+    border-radius: 16px;
+    max-width: 420px;
+    width: 90%;
+    margin: auto;
+    padding: 32px 28px 24px 28px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    position: relative;
+    animation: modalFadeIn 0.3s;
+}
+
+@keyframes modalFadeIn {
+    from { transform: translateY(-40px); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+}
+
+/* Close button */
+.close-modal {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    font-size: 28px;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s;
+    z-index: 10;
+}
+.close-modal:hover {
+    color: #d32f2f;
+}
+
+/* Form group spacing */
+#order-modal .form-group {
+    margin-bottom: 18px;
+}
+
+/* Label styling */
+#order-modal label {
+    font-weight: 500;
+    margin-bottom: 6px;
+    display: block;
+    color: #333;
+}
+
+/* Input styling */
+#order-modal input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid #ddd;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: border-color 0.2s;
+    background: #fafbfc;
+}
+#order-modal input:focus {
+    border-color: #4CAF50;
+    background: #fff;
+}
+
+/* Error message */
+#order-modal .invalid-feedback,
+#order-modal .error-message {
+    color: #d32f2f;
+    font-size: 13px;
+    margin-top: 4px;
+    display: none;
+}
+
+/* Show error when input.error */
+#order-modal input.error + .invalid-feedback,
+#order-modal input.error + .error-message {
+    display: block;
+}
+
+/* Confirm button */
+#order-modal #confirmButton {
+    width: 100%;
+    padding: 12px 0;
+    background: linear-gradient(90deg, #4CAF50 60%, #43a047 100%);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.2s;
+}
+#order-modal #confirmButton:hover {
+    background: linear-gradient(90deg, #43a047 60%, #388e3c 100%);
+}
+.form-group label {
+    font-weight: 500;
+    margin-bottom: 6px;
+    display: block;
+    color: #333;
+}
